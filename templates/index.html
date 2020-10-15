@@ -1,0 +1,26 @@
+<p1>
+    Sent from API 1 : {{.total_success1}}
+</p1>
+<br>
+<p1>
+    Sent from API 2 : {{.total_success2}}
+</p1>
+<br>
+
+<p1>
+    API 1 Fail : {{.api1_percentage}} %
+</p1>
+<br>
+<p1>
+    API 2 Fail : {{.api2_percentage}} %
+</p1>
+<br>
+<p1>
+    Total SMS {{.total}}
+</p1>
+<br>
+<form action="/search" , method="POST">
+    <label for="phone">First name:</label><br>
+    <input type="text" id="phone" name="phone" value="90319000000"><br>
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,16 @@
+{{ .message }}
+<br>
+total : {{ .total }}
+<br>
+<table>
+    <tr>
+        <th>COUNT</th>
+        <th>id</th>
+        <th>PhoneNumber</th>
+        <th>API</th>
+    </tr>
+    {{range .}}
+        {{.}}
+    {{end}}
+</table>
+
