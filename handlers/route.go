@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"smsproject/models"
 	"smsproject/request"
@@ -69,6 +70,7 @@ func SearchPhone (c *gin.Context) {
 		var results []map[string]interface{}
 
 		models.DB.Model(&models.Success{}).Where("phone_number = ?",SearchForm.Phone).Find(&results)
+		fmt.Println(results)
 		c.HTML(200, "search.html", gin.H{
 			"message": "OK",
 			"total":   total,
