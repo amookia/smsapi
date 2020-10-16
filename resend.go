@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	url2 "net/url"
 	"smsproject/models"
@@ -17,27 +16,27 @@ func main(){
 	for {
 		models.DB.Model(&models.Failed{}).Where("resend = ?", "0").Find(&notsent)
 		for _, sms := range notsent {
-			//body := sms["body"]
+			body := sms["body"].(string)
 			number, _ := sms["number"].(string)
 			id := sms["id"].(uint)
-			updateval(fmt.Sprint(id), number)
+			resend(fmt.Sprint(id), number,body)
 		}
 		time.Sleep(5 * time.Minute)
 	}
 }
 
-func resend(number uint,body string,id int){
+func resend(id string,number string,body string){
 	url := "/send?number=" + fmt.Sprint(number) + "&body=" + url2.QueryEscape(body)
-	api,err := http.Get("http://localhost:81" + url)
-	if err != nil || api.StatusCode != 200{
-		api2,err2 := http.Get("http://localhost:82" + url)
-		if err2 != nil || api2.StatusCode != 200 {
-			log.Println(err)
+	_,err := http.Get("http://localhost:81" + url)
+	if err != nil{
+		_,err2 := http.Get("http://localhost:82" + url)
+		if err2 != nil {
+			fmt.Println(err)
 		}else{
-			fmt.Println("OK")
+			updateval(id, number)
 		}
 	}else{
-		fmt.Println("OK")
+		updateval(id, number)
 	}
 }
 
