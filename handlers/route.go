@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"smsproject/models"
 	"smsproject/request"
@@ -62,7 +61,6 @@ func SearchPhone (c *gin.Context) {
 	isvalid := c.ShouldBind(&SearchForm) == nil
 	if isvalid {
 		var total int64
-		fmt.Println(total)
 		models.DB.Model(&models.Success{}).Where("phone_number = ?",SearchForm.Phone).Count(&total)
 		if total == 0 {
 			c.HTML(404,"errors.html",gin.H{"message":"NOT FOUND"})

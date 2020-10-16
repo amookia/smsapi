@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"smsproject/handlers"
 	"smsproject/models"
@@ -13,11 +12,8 @@ func main(){
 
 	//DB
 	models.ConnectToDB()
-	xxx,err := models.TopNum(9031900415)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(xxx)
+
+	models.DB.Model(&models.Failed{}).Where("resend = ?", "0")
 	//GET
 	app.GET("/send",handlers.Send)
 	app.GET("/panel",handlers.Panel)
