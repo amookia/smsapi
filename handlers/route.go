@@ -46,7 +46,7 @@ func Panel(c *gin.Context) {
 
 	//fmt.Println(float64(failed1)/float64(total_failed) * 100)
 	//fmt.Println(float64(failed2)/float64(total_failed) * 100)
-
+	topnum,_ := models.TopNum(1)
 
 	c.HTML(200,"index.html",gin.H{
 		"total":success,
@@ -54,6 +54,7 @@ func Panel(c *gin.Context) {
 		"total_success2":succuess_api2,
 		"api1_percentage":int(float64(failed1)/float64(total_failed) * 100),
 		"api2_percentage":int(float64(failed2)/float64(total_failed) * 100),
+		"toplist":topnum,
 	})
 }
 

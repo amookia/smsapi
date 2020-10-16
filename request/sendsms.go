@@ -56,6 +56,7 @@ func failed(number int , body string , api string) {
 
 //if status ok insert data into the sms
 func success(number int , body string , api string) {
+	models.CountSent(number)
 	smstodb := models.Success{PhoneNumber: number ,
 		SmsBody: body , Time: int(time.Now().Unix()) , Api: api}
 	models.DB.Create(&smstodb)

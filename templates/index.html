@@ -1,3 +1,5 @@
+<title>Report</title>
+<h1>Report</h1>
 <p1>
     Sent from API 1 : {{.total_success1}}
 </p1>
@@ -18,9 +20,17 @@
 <p1>
     Total SMS {{.total}}
 </p1>
-<br>
+<br><br>
+<h1>Search phone number</h1>
 <form action="/search" , method="POST">
-    <label for="phone">First name:</label><br>
+    <label for="phone">Phone Number</label><br>
     <input type="text" id="phone" name="phone" value="90319000000"><br>
     <input type="submit" value="Submit">
 </form>
+</h1>
+
+<h1>Top 10 Numbers</h1>
+{{range .toplist}}
+    {{.}}
+    <br>
+{{end}}
