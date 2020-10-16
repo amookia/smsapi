@@ -44,8 +44,8 @@ func Panel(c *gin.Context) {
 	models.DB.Model(&models.Failed{}).Where("api = ? AND resend = ?", "api1","0").Count(&failed1)
 	models.DB.Model(&models.Failed{}).Where("api = ? AND resend = ?", "api2","0").Count(&failed2)
 
-	fmt.Println(float64(failed1)/float64(total_failed) * 100)
-	fmt.Println(float64(failed2)/float64(total_failed) * 100)
+	//fmt.Println(float64(failed1)/float64(total_failed) * 100)
+	//fmt.Println(float64(failed2)/float64(total_failed) * 100)
 
 
 	c.HTML(200,"index.html",gin.H{
@@ -70,7 +70,6 @@ func SearchPhone (c *gin.Context) {
 		var results []map[string]interface{}
 
 		models.DB.Model(&models.Success{}).Where("phone_number = ?",SearchForm.Phone).Find(&results)
-		fmt.Println(results[0])
 		c.HTML(200, "search.html", gin.H{
 			"message": "OK",
 			"total":   total,
