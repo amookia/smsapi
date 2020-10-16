@@ -25,5 +25,8 @@ func main(){
 	//POST
 	app.POST("/search",handlers.SearchPhone)
 
+	//Not found
+	app.NoRoute(handlers.NotFound)
+
 	app.Run(":3000")
 }

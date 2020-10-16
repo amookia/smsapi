@@ -82,3 +82,9 @@ func SearchPhone (c *gin.Context) {
 		return
 	}
 }
+
+func NotFound(c *gin.Context){
+	c.HTML(404,"errors.html",gin.H{
+		"message" : "404 NOT FOUND!",
+	})
+}
