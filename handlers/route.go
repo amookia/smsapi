@@ -41,8 +41,8 @@ func Panel(c *gin.Context) {
 	//ALL FAILED COUNT
 	var failed1,failed2,total_failed int64
 	models.DB.Model(&models.Failed{}).Count(&total_failed)
-	models.DB.Model(&models.Failed{}).Where("api = ? AND resend = ?", "api1","0").Count(&failed1)
-	models.DB.Model(&models.Failed{}).Where("api = ? AND resend = ?", "api2","0").Count(&failed2)
+	models.DB.Model(&models.Failed{}).Where("api = ?", "api1").Count(&failed1)
+	models.DB.Model(&models.Failed{}).Where("api = ?", "api2").Count(&failed2)
 
 	//fmt.Println(float64(failed1)/float64(total_failed) * 100)
 	//fmt.Println(float64(failed2)/float64(total_failed) * 100)
