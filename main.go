@@ -13,13 +13,9 @@ func main(){
 	//DB
 	models.ConnectToDB()
 
-	models.DB.Model(&models.Failed{}).Where("resend = ?", "0")
-	//GET
-	app.GET("/send",handlers.Send)
-	app.GET("/panel",handlers.Panel)
-
-	//POST
-	app.POST("/search",handlers.SearchPhone)
+	//register routes
+	handlers.RegisterFront(app)
+	handlers.RegisterApi(app)
 
 	//Not found
 	app.NoRoute(handlers.NotFound)
