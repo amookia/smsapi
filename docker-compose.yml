@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  #flaskapi1 on port 81
+  flaskapi1:
+    build:
+      dockerfile: flaskapi/api1/Dockerfile
+      context: .
+    expose:
+      - 81
+
+  #flaskapi2 on 82 port
+  flaskapi2:
+    build:
+      dockerfile: flaskapi/api2/Dockerfile
+      context: .
+    expose:
+      - 81
+
+  gowebsite:
+    build:
+      dockerfile: gowebsite/Dockerfile
+      context: .
+    links:
+      - redis
+      - flaskapi1
+      - flaskapi2
+      - mysql
+    depends_on:
+      - flaskapi1
+      - flaskapi2
+      - mysql
+      - redis
+    ports:
+      - 3000:3000
+
+  redis:
+    image: redis:latest
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD : rootpwd
+      MYSQL_DATABASE : smsapi
+    expose:
+      - 3306
+

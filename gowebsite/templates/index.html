@@ -1,0 +1,36 @@
+<title>Report</title>
+<h1>Report</h1>
+<p1>
+    Sent from API 1 : {{.total_success1}}
+</p1>
+<br>
+<p1>
+    Sent from API 2 : {{.total_success2}}
+</p1>
+<br>
+
+<p1>
+    API 1 Fail : {{.api1_percentage}} %
+</p1>
+<br>
+<p1>
+    API 2 Fail : {{.api2_percentage}} %
+</p1>
+<br>
+<p1>
+    Total SMS {{.total}}
+</p1>
+<br><br>
+<h1>Find phone number</h1>
+<form action="/search" , method="POST">
+    <label for="phone">Phone Number</label><br>
+    <input type="text" id="phone" name="phone" value="9031900000"><br>
+    <input type="submit" value="Find">
+</form>
+</h1>
+
+<h1>Top 10 Numbers</h1>
+{{range .toplist}}
+    {{.}}
+    <br>
+{{end}}
